@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte Financiero</title>
+</head>
+<body>
+  <h1>Reporte Financiero</h1>
+  <p><a href="{{ url_for('registro') }}">Registrar nuevo movimiento</a> | <a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
+  <h2>Resumen</h2>
+  <ul>
+    <li>Total Ingresos: ${{ ingresos | round(2) }}</li>
+    <li>Total Gastos: ${{ gastos | round(2) }}</li>
+    <li>Balance: ${{ balance | round(2) }}</li>
+  </ul>
+
+  <h2>Movimientos registrados</h2>
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Monto</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mov in movimientos %}
+      <tr>
+        <td>{{ mov["Fecha"] }}</td>
+        <td>{{ mov["Tipo"] }}</td>
+        <td>${{ mov["Monto"] }}</td>
+        <td>{{ mov["Descripción"] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
